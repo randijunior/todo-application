@@ -1,4 +1,4 @@
-package com.randi.todolist.services;
+package com.springframework.todoapplication.services;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
+import java.time.LocalDate;
 import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
@@ -20,7 +21,7 @@ class TodoServiceTests {
 
 	@Test
 	void createTodoWithTitle() {
-		var todo = new Todo(1,"Estudar Java");
+		var todo = Todo.builder().id(1).title("Estudar Java").build();
 		when(todoRepository.save(any(Todo.class))).thenReturn(todo);//then(returnsFirstArg());
 		var savedTodo = todoRepository.save(todo);
 		assertThat(savedTodo.getTitle()).isNotNull();
@@ -30,8 +31,10 @@ class TodoServiceTests {
 	
 	@Test
 	void listAllTodos() {
-		var todoList = Arrays.asList(new Todo(1, "Estudar C++"), 
-				new Todo(2, "Estudar Java"));
+		var todoList = Arrays.asList(
+				Todo.builder().id(1).title("Estudar C++").build(),
+				Todo.builder().id(2).title("Estudar Java").build()
+		);
 		when(todoRepository.findAll()).thenReturn(todoList);
 		var listTodo = todoRepository.findAll();
 		assertThat(listTodo.size()).isNotZero();

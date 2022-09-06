@@ -8,19 +8,20 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-import lombok.Data;
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
+
+import lombok.*;
+
 @Entity
-@Data
-@RequiredArgsConstructor
+@Data @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Todo implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@NonNull private Integer id;
+	private Integer id;
 	@NonNull String title;
-	private LocalDate date = LocalDate.now(); 
+	@Builder.Default private LocalDate date = LocalDate.now();
 	
 }

@@ -8,9 +8,12 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @Transactional
 public class TodoService {
-	
+	private final TodoRepository todoRepository;
+
 	@Autowired
-	private TodoRepository todoRepository;
+	public TodoService(TodoRepository todoRepository) {
+		this.todoRepository = todoRepository;
+	}
 	
 	public Todo create(Todo todo) {
 		return todoRepository.save(todo);

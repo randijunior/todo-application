@@ -1,4 +1,4 @@
-package com.randi.todolist;
+package com.springframework.todoapplication;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
